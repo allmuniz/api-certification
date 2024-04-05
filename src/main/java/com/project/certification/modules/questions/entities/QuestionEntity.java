@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "TB_QUESTIONS")
-public class QuentionEntity {
+public class QuestionEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
