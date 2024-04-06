@@ -1,6 +1,7 @@
 package com.project.certification.modules.students.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.certification.modules.students.dto.StudentCertificationAnswerDto;
 import com.project.certification.modules.students.dto.StudentVerifyIfHasCertificationDto;
-import com.project.certification.modules.students.entities.CertificationStudentEntity;
 import com.project.certification.modules.students.useCases.StudentCertificationAnswersUseCase;
 import com.project.certification.modules.students.useCases.VerifyIfHasCertificationUseCase;
 
@@ -33,8 +33,14 @@ public class StudentController {
     }
 
     @PostMapping("/certification/answer")
-    public CertificationStudentEntity certificationAnswer(@RequestBody StudentCertificationAnswerDto dto) throws Exception{
+    public ResponseEntity<Object> certificationAnswer(@RequestBody StudentCertificationAnswerDto dto) throws Exception{
 
-        return this.studentCertificationAnswersUseCase.execute(dto);
+        try {
+            var result = this.studentCertificationAnswersUseCase.execute(dto);
+            return ResponseEntity.ok().body(result);
+        } catch (Exception e) {
+
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
