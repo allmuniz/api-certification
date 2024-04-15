@@ -94,7 +94,7 @@ public class StudentCertificationAnswersUseCase {
         CertificationStudentEntity certificationStudentEntity = CertificationStudentEntity.builder()
                                                                                           .studentId(studentId)
                                                                                           .technology(dto.getTechnology())
-                                                                                          .grate(corretcAnswers.get())
+                                                                                          .grade(corretcAnswers.get())
                                                                                           .build();
         var certificationStudentCreated = certificationStudentRepository.save(certificationStudentEntity);
 
